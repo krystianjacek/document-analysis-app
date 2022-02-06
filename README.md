@@ -16,8 +16,8 @@
 
 ## How to access database
 - database URL is:  jdbc:h2:mem:docanalysisdb
- - user : sa
- - password : password
+  - user : sa
+  - password : password
 - to access database go to : http://localhost:8080/h2-console/
 
 ## How to get statistics
