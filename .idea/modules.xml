@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/document-analysis-app.iml" filepath="$PROJECT_DIR$/document-analysis-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/document-analysis-webapp/document-analysis-webapp.iml" filepath="$PROJECT_DIR$/document-analysis-webapp/document-analysis-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/document-analysis-webapp/document-analysis-webapp-backend/document-analysis-webapp-backend.iml" filepath="$PROJECT_DIR$/document-analysis-webapp/document-analysis-webapp-backend/document-analysis-webapp-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/document-analysis-webapp/document-analysis-webapp-frontend/document-analysis-webapp-frontend.iml" filepath="$PROJECT_DIR$/document-analysis-webapp/document-analysis-webapp-frontend/document-analysis-webapp-frontend.iml" />
+    </modules>
+  </component>
+</project>

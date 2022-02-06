@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<packaging>pom</packaging>
+	<groupId>com.jacek</groupId>
+	<artifactId>document-analysis-app</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>DOCUMENT ANALYSIS</name>
+	<description>Document Analysis Application</description>
+
+	<modules>
+		<module>document-analysis-webapp</module>
+	</modules>
+
+	<properties>
+		<version.lombok>1.18.18</version.lombok>
+		<version.mapstruct>1.4.2.Final</version.mapstruct>
+		<version.mapstruct-lombok>0.2.0</version.mapstruct-lombok>
+		<version.springfox>3.0.0</version.springfox>
+		<version.swagger-ui>3.0.0</version.swagger-ui>
+
+		<java.version>15</java.version>
+
+		<maven.compile.source>15</maven.compile.source>
+		<maven.compile.target>15</maven.compile.target>
+		<maven.compile.deprecation>true</maven.compile.deprecation>
+		<maven.compile.optimize>true</maven.compile.optimize>
+		<maven.compile.warnings>true</maven.compile.warnings>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${version.springfox}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${version.swagger-ui}</version>
+		</dependency>
+	</dependencies>
+
+</project>
