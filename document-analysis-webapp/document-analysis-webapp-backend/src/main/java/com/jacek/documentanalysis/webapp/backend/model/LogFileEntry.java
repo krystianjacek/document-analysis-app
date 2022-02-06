@@ -8,9 +8,11 @@ import org.springframework.data.util.Pair;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 public class LogFileEntry {
 	
 	@NonNull

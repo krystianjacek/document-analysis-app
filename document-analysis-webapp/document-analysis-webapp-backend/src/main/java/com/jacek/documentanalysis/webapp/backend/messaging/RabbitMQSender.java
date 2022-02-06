@@ -28,6 +28,6 @@ public class RabbitMQSender {
 	public void send(final EventLog eventLog) {
 		this.template.convertAndSend(this.exchange, this.routingkey, eventLog);
 		
-		LOGGER.info("Send msg = {}", eventLog);
+		LOGGER.info("Send message: {}", eventLog);
 	}
 }

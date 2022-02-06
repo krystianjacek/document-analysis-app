@@ -12,6 +12,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.jacek.documentanalysis.webapp.backend.common.Defaults;
@@ -23,6 +25,8 @@ import com.jacek.documentanalysis.webapp.backend.model.AggregationParameters;
 
 @Repository
 public class ExtendedLogRepositoryImpl implements ExtendedLogRepository {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExtendedLogRepositoryImpl.class);
 	
 	private final EntityManager entityManager;
 	
@@ -74,6 +78,8 @@ public class ExtendedLogRepositoryImpl implements ExtendedLogRepository {
 	}
 	
 	private AggregatedLog extractAggregatedLog(final Object object) {
+		LOGGER.debug("Extract object to aggregated log : {}", object);
+		
 		final AggregatedLog aggregatedLog = new AggregatedLog();
 		final Object[] result = (Object[]) object;
 		aggregatedLog.setRowsCount((long) result[0]);
@@ -84,6 +90,8 @@ public class ExtendedLogRepositoryImpl implements ExtendedLogRepository {
 	}
 	
 	private List<AggregationParameters> extractAggregationParameters(final List<Object> resultList) {
+		LOGGER.debug("Extract objects list to list of aggregation parameters : {}", resultList);
+		
 		final List<AggregationParameters> aggregationParametersList = new ArrayList<>();
 		for(final Object o : resultList) {
 			final Object[] result = (Object[]) o;
@@ -100,18 +108,22 @@ public class ExtendedLogRepositoryImpl implements ExtendedLogRepository {
 	private List<Predicate> getWherePredicates(final SearchParams searchParams, final CriteriaBuilder criteriaBuilder, final Root<LogEntity> logStatisticEntityRoot) {
 		final List<Predicate> wherePredicates = new ArrayList<>();
 		if (searchParams.getDayOfMonth() > 0) {
+			LOGGER.debug("day of month is defined: {}", searchParams.getDayOfMonth());
 			final Path<String> dayOfMonthPath = logStatisticEntityRoot.get(Defaults.LogEntity.FIELD_DAY_OF_MONTH);
 			wherePredicates.add(criteriaBuilder.equal(dayOfMonthPath, searchParams.getDayOfMonth()));
 		}
 		if (searchParams.getHour() > 0) {
+			LOGGER.debug("hour is defined: {}", searchParams.getHour());
 			final Path<String> hourPath = logStatisticEntityRoot.get(Defaults.LogEntity.FIELD_HOUR);
 			wherePredicates.add(criteriaBuilder.equal(hourPath, searchParams.getHour()));
 		}
 		if (!StringUtils.isEmpty(searchParams.getOfficeName())) {
+			LOGGER.debug("office name is defined: {}", searchParams.getOfficeName());
 			final Path<String> officeNamePath = logStatisticEntityRoot.get(Defaults.LogEntity.FIELD_OFFICE_NAME);
 			wherePredicates.add(criteriaBuilder.equal(officeNamePath, searchParams.getOfficeName()));
 		}
 		if (!StringUtils.isEmpty(searchParams.getUserName())) {
+			LOGGER.debug("user name is defined: {}", searchParams.getUserName());
 			final Path<String> userNamePath = logStatisticEntityRoot.get(Defaults.LogEntity.FIELD_USER_NAME);
 			wherePredicates.add(criteriaBuilder.equal(userNamePath, searchParams.getUserName()));
 		}

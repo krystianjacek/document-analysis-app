@@ -40,6 +40,7 @@ public class LogController {
 													@RequestParam(required = false) final String userName,
 													@RequestParam(required = false) final Integer dayOfMonth,
 													@RequestParam(required = false) final Integer hour) {
+		LOGGER.info("Request to get aggregated statistics received");
 		return this.aggregatedLogMapper.map(this.logService.readAggregatedLogs(officeName, userName, dayOfMonth, hour));
 	}
 	
@@ -49,6 +50,7 @@ public class LogController {
 												@RequestParam(required = false) final String userName,
 												@RequestParam(required = false) final Integer dayOfMonth,
 												@RequestParam(required = false) final Integer hour) {
+		LOGGER.info("Request to get detailed statistics received");
 		return this.detailedLogMapper.map(this.logService.readDetailedLogs(officeName, userName, dayOfMonth, hour));
 	}
 }

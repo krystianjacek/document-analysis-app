@@ -1,8 +1,10 @@
 package com.jacek.documentanalysis.webapp.backend.dao;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class SearchParams {
 	private String officeName;
 	

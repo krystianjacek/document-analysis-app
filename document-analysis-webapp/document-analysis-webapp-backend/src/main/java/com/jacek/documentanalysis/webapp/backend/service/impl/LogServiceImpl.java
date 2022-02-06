@@ -45,7 +45,10 @@ public class LogServiceImpl implements LogService {
 	@Override
 	@Transactional
 	public void processLog(final LogFileEntry logFileEntry) {
+		LOGGER.debug("Process log file entry : {}", logFileEntry);
 		final Log log = this.constructLog(logFileEntry);
+		
+		LOGGER.debug("Save log {}", log);
 		this.logRepository.save(this.logMapper.map(log));
 	}
 	
@@ -75,8 +78,9 @@ public class LogServiceImpl implements LogService {
 				.build();
 		
 		final List<AggregationParameters> aggregationParametersList = this.logRepository.findAggregationParameters(searchParams);
-		final List<DetailedAggregatedLog> detailedAggregatedLogList = new ArrayList<>();
+		LOGGER.debug("Found {} aggregation parameters", aggregationParametersList.size());
 		
+		final List<DetailedAggregatedLog> detailedAggregatedLogList = new ArrayList<>();
 		for (final AggregationParameters aggregationParameters : aggregationParametersList) {
 			final SearchParams aggregationSearchParams = SearchParams.SearchParamsBuilder
 					.newInstance()
@@ -86,8 +90,10 @@ public class LogServiceImpl implements LogService {
 					.hour(aggregationParameters.getHour())
 					.build();
 			
+			LOGGER.debug("Find aggregated log for following aggregation search params : {}", aggregationSearchParams);
 			final AggregatedLog aggregatedLogByCriteria = this.logRepository.findAggregatedLogByCriteria(aggregationSearchParams);
 			
+			//TODO: this object construction could be improved...
 			final DetailedAggregatedLog detailedAggregatedLog = new DetailedAggregatedLog();
 			detailedAggregatedLog.setRowsCount(aggregatedLogByCriteria.getRowsCount());
 			detailedAggregatedLog.setAvgScanTime(aggregatedLogByCriteria.getAvgScanTime());
@@ -99,6 +105,7 @@ public class LogServiceImpl implements LogService {
 			detailedAggregatedLog.setHour(aggregationParameters.getHour());
 			
 			detailedAggregatedLogList.add(detailedAggregatedLog);
+			LOGGER.debug("Found detailed aggregated log : {}", detailedAggregatedLog);
 		}
 		
 		final DetailedLog detailedLog = new DetailedLog();

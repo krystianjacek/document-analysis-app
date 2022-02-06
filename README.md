@@ -8,6 +8,8 @@
 
 ## How it works
 - log file watcher is watching *{user.home}/logs* folder for any new log files
+  - only files added to this directory after app started will be consumed
+  - modified files won't be consumed
 - when new file appears, new event is sent to rabbit MQ 
 - event is consumed by *EventLogConsumer*
 - a new file is read by *EventLogReader* and parsed to *LogFileEntry*

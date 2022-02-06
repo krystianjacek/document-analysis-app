@@ -28,7 +28,7 @@ public class EventLogConsumer {
 	
 	@RabbitHandler
 	public void receive(final EventLog eventLog) {
-		LOGGER.info(" --> Received {}", eventLog);
+		LOGGER.info(" --> Received event: {}", eventLog);
 		final LogFileEntry logFileEntry = this.eventLogReader.parse(eventLog);
 		this.logService.processLog(logFileEntry);
 	}

@@ -64,9 +64,9 @@ public class EventLogReader {
 			return logFileEntry;
 		}
 		else {
-			return new LogFileEntry();
+			LOGGER.error("Invalid file name: {}", eventLog.getFileName());
 			//handle properly
-//			throw new RuntimeException();
+			throw new RuntimeException();
 		}
 	}
 	
