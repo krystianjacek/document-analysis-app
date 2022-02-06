@@ -82,10 +82,10 @@ public class ExtendedLogRepositoryImpl implements ExtendedLogRepository {
 		
 		final AggregatedLog aggregatedLog = new AggregatedLog();
 		final Object[] result = (Object[]) object;
-		aggregatedLog.setRowsCount((long) result[0]);
-		aggregatedLog.setAvgScanTime((double) result[1]);
-		aggregatedLog.setAvgSaveTime((double) result[2]);
-		aggregatedLog.setAvgShowTime((double) result[3]);
+		aggregatedLog.setRowsCount(result[0] == null ? null : (Long) result[0]);
+		aggregatedLog.setAvgScanTime(result[1] == null ? null : (Double) result[1]);
+		aggregatedLog.setAvgSaveTime(result[2] == null ? null : (Double) result[2]);
+		aggregatedLog.setAvgShowTime(result[3] == null ? null : (Double) result[3]);
 		return aggregatedLog;
 	}
 	
